@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/groovenauts/capistrano-systemd-multiservice.git
+  revision: 9ade1d3607f7d8a36fab30c5195137f7c219a1b6
+  branch: dependabot/bundler/capistrano-gte-3.7.0-and-lt-3.18.0
+  specs:
+    capistrano-systemd-multiservice (0.1.0.beta12)
+      capistrano (>= 3.7.0, < 3.18.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -698,6 +706,7 @@ DEPENDENCIES
   capistrano (~> 3.16.0)
   capistrano-bundler (~> 2.0)
   capistrano-rails (~> 1.6.1)
+  capistrano-systemd-multiservice!
   capistrano3-delayed-job (~> 1.7.6)
   capistrano3-puma (~> 5.0.4)
   capybara (~> 3.35.3)
