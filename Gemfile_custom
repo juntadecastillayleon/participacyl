@@ -23,3 +23,8 @@
 ###### Other gems ######
 #
 # Add your custom gem dependencies here
+
+gem "capistrano-systemd-multiservice",
+  require: false,
+  git: "https://github.com/groovenauts/capistrano-systemd-multiservice.git",
+  branch: "dependabot/bundler/capistrano-gte-3.7.0-and-lt-3.18.0"
