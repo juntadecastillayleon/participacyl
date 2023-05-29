@@ -24,6 +24,22 @@ class Setting
       else
         consul_defaults.merge({
           # Overwrite default CONSUL settings or add new settings here
+          "feature.facebook_login": false,
+          "feature.google_login": false,
+          "feature.twitter_login": false,
+          "feature.signature_sheets": false,
+          "feature.sdg": false,
+          "homepage.widgets.feeds.debates": false,
+          "homepage.widgets.feeds.proposals": false,
+          mailer_from_name: "Participa Castilla y León",
+          mailer_from_address: "noreply@participacyl.es",
+          org_name: "Junta de Castilla y León",
+          "process.budgets": false,
+          "process.debates": false,
+          "process.polls": false,
+          "process.proposals": false,
+          proposal_code_prefix: "CYL",
+          url: "http://participacyl.es"
         })
       end
     end
