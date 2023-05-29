@@ -8,19 +8,10 @@ env:
 jobs:
   assign_one_project:
     name: Add new pull requests to the kanban
-    if: github.repository_owner == 'consul'
     runs-on: ubuntu-latest
     steps:
-    - name: Assign new pull requests to the reviewing column
-      uses: srggrs/assign-one-project-github-action@1.3.1
-      if: github.event.pull_request.draft == false
+    - name: Assign new pull requests to the project board
+      uses: actions/add-to-project@v0.5.0
       with:
-        project: "https://github.com/orgs/consul/projects/1"
-        column_name: "Reviewing"
-
-    - name: Assign new draft pull requests to the doing column
-      uses: srggrs/assign-one-project-github-action@1.3.1
-      if: github.event.pull_request.draft == true
-      with:
-        project: "https://github.com/orgs/consul/projects/1"
-        column_name: "Doing"
+        project-url: https://github.com/orgs/rockandror/projects/1
+        github-token: ${{ secrets.KANBAN_TOKEN }}
