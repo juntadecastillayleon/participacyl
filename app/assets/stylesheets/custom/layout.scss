@@ -9,3 +9,33 @@ footer {
 .footer {
   background: #e3eeee;
 }
+
+.subnavigation {
+  @include breakpoint(medium) {
+    background: $brand;
+  }
+
+  a {
+    color: inherit;
+
+    @include breakpoint(medium) {
+      color: $white;
+
+      &:hover {
+        color: $white;
+        text-decoration: underline;
+      }
+    }
+
+    &.is-active {
+      color: inherit;
+
+      @include breakpoint(medium) {
+        border-bottom: 0;
+        color: $white;
+        margin-bottom: 0;
+        text-decoration: underline;
+      }
+    }
+  }
+}
