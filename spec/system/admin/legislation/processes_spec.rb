@@ -48,7 +48,7 @@ describe "Admin collaborative legislation", :admin do
   end
 
   context "Create" do
-    scenario "Valid legislation process" do
+    scenario "Valid legislation process", :consul do
       visit admin_root_path
 
       within("#side_menu") do
