@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_06_115024) do
+ActiveRecord::Schema.define(version: 2023_06_07_091644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -800,7 +800,7 @@ ActiveRecord::Schema.define(version: 2023_06_06_115024) do
 
   create_table "legislation_proposals", id: :serial, force: :cascade do |t|
     t.integer "legislation_process_id"
-    t.string "title", limit: 80
+    t.string "title"
     t.text "description"
     t.integer "author_id"
     t.datetime "hidden_at"

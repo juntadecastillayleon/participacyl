@@ -5,3 +5,11 @@
     }
   }
 }
+
+.process-proposal {
+  .header {
+    @include breakpoint(medium) {
+      height: auto;
+    }
+  }
+}
