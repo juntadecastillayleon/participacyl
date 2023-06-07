@@ -205,7 +205,7 @@ describe "Admin collaborative legislation", :admin do
              description: "Description of the process")
     end
 
-    scenario "Remove summary text" do
+    scenario "Remove summary text", :consul do
       visit admin_root_path
 
       within("#side_menu") do

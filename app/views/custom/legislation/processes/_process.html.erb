@@ -12,9 +12,11 @@
       <% end %>
     </div>
 
-    <div class="small-12 medium-11 column end">
-      <%= markdown(process.summary.presence || first_paragraph(process.description)) %>
-    </div>
+    <% if process.summary.present? %>
+      <div class="small-12 medium-11 column end">
+        <%= markdown(process.summary) %>
+      </div>
+    <% end %>
 
     <div class="small-12 medium-11 column end">
       <%= render SDG::TagListComponent.new(process, limit: 5, linkable: false) %>

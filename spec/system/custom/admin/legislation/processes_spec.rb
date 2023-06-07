@@ -99,5 +99,19 @@ describe "Admin collaborative legislation", :admin do
       expect(page).to have_content "New description"
       expect(page).to have_content "NEW PROMPT?"
     end
+
+    scenario "Do not show the first paragraph of description when remove summary text" do
+      visit edit_admin_legislation_process_path(process)
+
+      fill_in "Summary", with: ""
+      click_button "Save changes"
+
+      expect(page).to have_content "Process updated successfully"
+
+      visit legislation_processes_path
+
+      expect(page).not_to have_content "Summarizing the process"
+      expect(page).not_to have_content "Description of the process"
+    end
   end
 end
