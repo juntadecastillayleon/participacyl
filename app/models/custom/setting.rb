@@ -24,6 +24,7 @@ class Setting
       else
         consul_defaults.merge({
           # Overwrite default CONSUL settings or add new settings here
+          comments_body_max_length: 12000,
           "feature.facebook_login": false,
           "feature.google_login": false,
           "feature.twitter_login": false,
