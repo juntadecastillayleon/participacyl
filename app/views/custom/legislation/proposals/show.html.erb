@@ -64,7 +64,11 @@
           <strong><%= @proposal.code %></strong>
         </p>
 
-        <blockquote><%= @proposal.summary %></blockquote>
+        <% if @proposal.description.present? %>
+          <blockquote><%= @proposal.summary %></blockquote>
+        <% else %>
+          <%= @proposal.summary %>
+        <% end %>
 
         <% if @proposal.video_url.present? %>
           <div class="small-12 medium-7 small-centered">
