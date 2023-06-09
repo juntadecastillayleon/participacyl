@@ -22,7 +22,7 @@ describe Legislation::Proposal do
     expect(proposal).not_to be_valid
   end
 
-  it "is not valid without a summary" do
+  it "is not valid without a summary", :consul do
     proposal.summary = nil
     expect(proposal).not_to be_valid
   end
