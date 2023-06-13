@@ -8,6 +8,10 @@
   <small>
     <%= document.humanized_content_type %>&nbsp;|&nbsp;
     <%= number_to_human_size(document.attachment_file_size, precision: 2) %>
+    <% if document.admin %>
+      &nbsp;|&nbsp;
+      <%= sanitize(t("documents.uploaded_by", username: t("comments.comment.admin"), id: document.user.id)) %>
+    <% end %>
   </small>
 
   <% if can?(:destroy, document) %>

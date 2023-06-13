@@ -1,0 +1,3 @@
+en:
+  documents:
+    uploaded_by: "Reply from JCYL uploaded by the <strong>%{username} #%{id}</strong>"

@@ -1,0 +1,3 @@
+es:
+  documents:
+    uploaded_by: "Respuesta de la JCYL subido por el <strong>%{username} #%{id}</strong>"
