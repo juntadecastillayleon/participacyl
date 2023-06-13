@@ -50,3 +50,13 @@ footer {
     }
   }
 }
+
+.top-bar {
+  .top-bar-title {
+    a img {
+      @include breakpoint(small only) {
+        height: rem-calc(80);
+      }
+    }
+  }
+}
