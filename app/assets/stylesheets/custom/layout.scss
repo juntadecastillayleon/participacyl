@@ -1,0 +1,62 @@
+footer {
+  a {
+    &:hover {
+      color: $brand;
+    }
+  }
+}
+
+.footer {
+  background: #e3eeee;
+}
+
+.subnavigation {
+  @include breakpoint(medium) {
+    background: $brand;
+  }
+
+  a {
+    color: inherit;
+
+    @include breakpoint(medium) {
+      color: $white;
+
+      &:hover {
+        color: $white;
+        text-decoration: underline;
+      }
+    }
+
+    &.is-active {
+      color: inherit;
+
+      @include breakpoint(medium) {
+        border-bottom: 0;
+        color: $white;
+        margin-bottom: 0;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.public > .wrapper > header {
+  .top-bar {
+    color: $black;
+    background-color: $white;
+
+    a {
+      font-weight: bold;
+    }
+  }
+}
+
+.top-bar {
+  .top-bar-title {
+    a img {
+      @include breakpoint(small only) {
+        height: rem-calc(80);
+      }
+    }
+  }
+}

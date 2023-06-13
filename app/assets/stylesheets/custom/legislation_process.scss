@@ -1,0 +1,7 @@
+.key-dates {
+  li {
+    @include breakpoint(large) {
+      background: #f6f6f6;
+    }
+  }
+}
