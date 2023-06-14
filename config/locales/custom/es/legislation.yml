@@ -6,3 +6,5 @@ es:
           button: Buscar
           placeholder: Buscar procesos...
           title: Buscar
+        tags_cloud:
+          tags: Etiquetas
