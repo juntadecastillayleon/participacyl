@@ -11,6 +11,7 @@
     <thead>
       <tr>
         <th scope="col"><%= t("admin.shared.title") %></th>
+        <th scope="col"><%= t("admin.documents.index.legislation.proposal_id") %></th>
         <th scope="col"><%= t("admin.documents.index.format") %></th>
         <th scope="col"><%= t("admin.documents.index.size") %></th>
         <th scope="col"><%= t("admin.documents.index.url") %></th>
@@ -21,6 +22,7 @@
       <% @documents.each do |document| %>
         <tr id="<%= dom_id(document) %>" class="document">
           <td><%= document.title %></td>
+          <td class="text-center"><%= document.documentable_id %></td>
           <td><%= document.attachment.content_type %></td>
           <td><%= number_to_human_size(document.attachment.byte_size) %></td>
           <td><%= link_to document.title, document.attachment, target: :blank %></td>

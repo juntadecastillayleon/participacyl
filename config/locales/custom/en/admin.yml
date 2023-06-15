@@ -1,0 +1,6 @@
+en:
+  admin:
+    documents:
+      index:
+        legislation:
+          proposal_id: Proposal ID

@@ -1,0 +1,6 @@
+es:
+  admin:
+    documents:
+      index:
+        legislation:
+          proposal_id: ID Propuesta
