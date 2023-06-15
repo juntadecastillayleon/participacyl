@@ -1,0 +1,40 @@
+.feeds-processes {
+  @include flex-with-gap;
+  flex-wrap: wrap;
+
+  > * {
+    display: flex;
+    flex-basis: calc((#{rem-calc(720)} - 100%) * 999);
+    flex-direction: column;
+    flex-grow: 1;
+
+    > :nth-last-child(2) {
+      margin-bottom: auto;
+    }
+  }
+
+  .feed-item {
+    margin-top: $line-height;
+
+    &.open {
+      @include has-fa-icon(unlock-alt, solid);
+
+      &::before {
+        color: $color-success;
+      }
+    }
+
+    &.closed {
+      @include has-fa-icon(lock, solid);
+
+      &::before {
+        color: darken($alert-color, 5%);
+      }
+    }
+
+    span {
+      display: block;
+      font-size: $small-font-size;
+    }
+  }
+}

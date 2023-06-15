@@ -1,0 +1,12 @@
+es:
+  welcome:
+    feed:
+      most_active:
+        consulta_previa: Consultas previas
+        participación_ciudadana: Procesos de participación ciudadana
+      proposals:
+        one: 1 propuesta
+        other: "%{count} propuestas"
+      see_all:
+        consulta_previa: Ver todas las consultas previas
+        participación_ciudadana: Ver todos los procesos de participación ciudadana
