@@ -2,10 +2,25 @@
   <%= t("layouts.header.collaborative_legislation") %> - <%= t("legislation.processes.index.filters.#{@current_filter}") %>
 <% end %>
 
-<%= render "shared/section_header", i18n_namespace: "legislation.processes.index.section_header", image: "legislation_processes" %>
+<% content_for :header_addon do %>
+  <%= render "shared/search_form",
+             search_path: legislation_processes_path(page: 1),
+             i18n_namespace: "legislation.processes.index.search_form" %>
+<% end %>
+
+<% if @search_terms || @advanced_search_terms %>
+  <%= render Shared::SearchResultsSummaryComponent.new(
+    results: @processes,
+    search_terms: @search_terms,
+    advanced_search_terms: @advanced_search_terms
+  ) %>
+<% else %>
+  <%= render "shared/section_header", i18n_namespace: "legislation.processes.index.section_header", image: "legislation_processes" %>
+<% end %>
 
 <div class="row">
   <div id="legislation" class="legislation-list small-12 medium-9 column">
+    <%= render Shared::AdvancedSearchComponent.new %>
 
     <%= render "shared/filter_subnav", i18n_namespace: "legislation.processes.index" %>
 
