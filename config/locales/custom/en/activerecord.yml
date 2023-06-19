@@ -1,0 +1,5 @@
+en:
+  activerecord:
+    attributes:
+      document:
+        documentable_id: Proposal ID

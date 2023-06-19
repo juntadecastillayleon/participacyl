@@ -13,7 +13,7 @@ describe "Documents", :admin do
                               href: new_admin_site_customization_document_path
   end
 
-  scenario "Index" do
+  scenario "Index", :consul do
     3.times { create(:document, :admin) }
     1.times { create(:document) }
 
@@ -51,7 +51,7 @@ describe "Documents", :admin do
     expect(page).to have_selector("#documents .document", count: 2)
   end
 
-  scenario "Create" do
+  scenario "Create", :consul do
     visit new_admin_site_customization_document_path
 
     attach_file("document_attachment", file_fixture("logo.pdf"))
