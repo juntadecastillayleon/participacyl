@@ -36,3 +36,6 @@ tmp/
 # Test results
 /spec/examples.txt
 /coverage/
+
+# Data to import
+/lib/tasks/data.json
