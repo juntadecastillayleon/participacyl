@@ -14,7 +14,7 @@ describe "Admin feature flags", :admin do
     end
   end
 
-  scenario "Disable a participatory process", :show_exceptions do
+  scenario "Disable a participatory process", :show_exceptions, :consul do
     budget = create(:budget)
 
     visit admin_settings_path
