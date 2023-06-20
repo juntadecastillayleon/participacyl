@@ -54,6 +54,10 @@ footer {
 .top-bar {
   .top-bar-title {
     a img {
+      @include breakpoint(medium) {
+        width: 7rem;
+      }
+
       @include breakpoint(small only) {
         height: rem-calc(80);
       }
