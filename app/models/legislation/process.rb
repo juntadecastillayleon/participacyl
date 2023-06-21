@@ -17,6 +17,7 @@ class Legislation::Process < ApplicationRecord
   translates :summary,            touch: true
   translates :description,        touch: true
   translates :additional_info,    touch: true
+  translates :prompt,             touch: true
   translates :milestones_summary, touch: true
   translates :homepage,           touch: true
   include Globalizable

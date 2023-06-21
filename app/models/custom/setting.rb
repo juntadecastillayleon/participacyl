@@ -24,6 +24,7 @@ class Setting
       else
         consul_defaults.merge({
           # Overwrite default CONSUL settings or add new settings here
+          comments_body_max_length: 12000,
           "feature.facebook_login": false,
           "feature.google_login": false,
           "feature.twitter_login": false,
@@ -39,9 +40,43 @@ class Setting
           "process.polls": false,
           "process.proposals": false,
           proposal_code_prefix: "CYL",
+          "uploads.documents.content_types": %w[application/pdf
+                                                application/msword
+                                                application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                                                application/x-ole-storage application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+                                                text/plain
+                                                application/zip
+                                                image/jpeg
+                                                image/png
+                                                image/gif].join(" "),
+          "uploads.documents.max_amount": 10,
+          "uploads.documents.max_size": 50,
+          "uploads.images.content_types": "image/jpeg image/png image/gif",
           url: "http://participacyl.es"
         })
       end
+    end
+
+    def mime_types
+      {
+        "images" => {
+          "jpg"  => "image/jpeg",
+          "png"  => "image/png",
+          "gif"  => "image/gif"
+        },
+        "documents" => {
+          "pdf"  => "application/pdf",
+          "doc"  => "application/msword",
+          "docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "xls"  => "application/x-ole-storage",
+          "xlsx" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "csv"  => "text/plain",
+          "zip"  => "application/zip",
+          "jpg"  => "image/jpeg",
+          "png"  => "image/png",
+          "gif"  => "image/gif"
+        }
+      }
     end
   end
 end

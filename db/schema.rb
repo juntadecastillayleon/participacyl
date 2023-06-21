@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_03_112944) do
+ActiveRecord::Schema.define(version: 2023_06_07_091644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -751,6 +751,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.text "milestones_summary"
     t.text "homepage"
     t.datetime "hidden_at"
+    t.text "prompt"
     t.index ["hidden_at"], name: "index_legislation_process_translations_on_hidden_at"
     t.index ["legislation_process_id"], name: "index_199e5fed0aca73302243f6a1fca885ce10cdbb55"
     t.index ["locale"], name: "index_legislation_process_translations_on_locale"
@@ -799,7 +800,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
 
   create_table "legislation_proposals", id: :serial, force: :cascade do |t|
     t.integer "legislation_process_id"
-    t.string "title", limit: 80
+    t.string "title"
     t.text "description"
     t.integer "author_id"
     t.datetime "hidden_at"

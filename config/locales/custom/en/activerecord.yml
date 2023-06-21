@@ -1,5 +1,7 @@
 en:
   activerecord:
     attributes:
+      legislation/process/translation:
+        prompt: Prompt
       document:
         documentable_id: Proposal ID

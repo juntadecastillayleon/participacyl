@@ -1,5 +1,7 @@
 es:
   activerecord:
     attributes:
+      legislation/process/translation:
+        prompt: Pregunta a los ciudadanos
       document:
         documentable_id: ID de la Propuesta
