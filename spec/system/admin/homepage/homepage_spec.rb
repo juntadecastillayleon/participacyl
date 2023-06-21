@@ -102,7 +102,7 @@ describe "Homepage", :admin do
       end
     end
 
-    scenario "Processes" do
+    scenario "Processes", :consul do
       5.times { create(:legislation_process) }
 
       visit admin_homepage_path

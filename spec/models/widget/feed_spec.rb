@@ -67,7 +67,7 @@ describe Widget::Feed do
         expect(feed.processes.count).to be 3
       end
 
-      it "does not return past processes" do
+      it "does not return past processes", :consul do
         create(:legislation_process, :past)
 
         expect(feed.processes).to be_empty

@@ -1,0 +1,10 @@
+es:
+  legislation:
+    processes:
+      index:
+        search_form:
+          button: Buscar
+          placeholder: Buscar procesos...
+          title: Buscar
+        tags_cloud:
+          tags: Etiquetas
