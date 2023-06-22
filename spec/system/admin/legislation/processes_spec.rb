@@ -311,6 +311,8 @@ describe "Admin collaborative legislation", :admin do
       visit edit_admin_legislation_process_path(process)
       within(".admin-content") { click_link "Proposals" }
 
+      expect(page).to have_content "Categories that users can select creating the proposal"
+
       fill_in "Categories", with: "recycling,bicycles,pollution"
       click_button "Save changes"
 

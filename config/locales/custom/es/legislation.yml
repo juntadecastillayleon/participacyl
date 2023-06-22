@@ -8,3 +8,5 @@ es:
           title: Buscar
         tags_cloud:
           tags: Etiquetas
+      form:
+        tags_instructions: Etiqueta este proceso. Puedes elegir entre las categorías propuestas o introducir las que desees
