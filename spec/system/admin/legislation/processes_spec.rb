@@ -189,7 +189,7 @@ describe "Admin collaborative legislation", :admin do
       expect(page).to have_css("img[alt='An example legislation process']")
     end
 
-    scenario "Default colors are present" do
+    scenario "Default colors are present", :consul do
       visit new_admin_legislation_process_path
 
       expect(find("#legislation_process_background_color").value).to eq "#e7f2fc"

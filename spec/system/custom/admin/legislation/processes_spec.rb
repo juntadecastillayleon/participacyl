@@ -72,6 +72,13 @@ describe "Admin collaborative legislation", :admin do
       expect(page).to have_content "Summary of the process"
       expect(page).not_to have_content "Describing the process"
     end
+
+    scenario "Default colors are present" do
+      visit new_admin_legislation_process_path
+
+      expect(find("#legislation_process_background_color").value).to eq "#f0f0f0"
+      expect(find("#legislation_process_font_color").value).to eq "#222222"
+    end
   end
 
   context "Update" do
