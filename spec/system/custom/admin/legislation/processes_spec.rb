@@ -120,5 +120,26 @@ describe "Admin collaborative legislation", :admin do
       expect(page).not_to have_content "Summarizing the process"
       expect(page).not_to have_content "Description of the process"
     end
+
+    scenario "Tag list" do
+      visit edit_admin_legislation_process_path(process)
+
+      expect(page).to have_field "Categories", with: ""
+
+      click_link "ConsultaPrevia"
+
+      expect(page).to have_field "Categories", with: '"ConsultaPrevia"'
+
+      click_button "Save changes"
+
+      expect(page).to have_content "Process updated successfully"
+
+      visit legislation_processes_path
+
+      within ".legislation" do
+        expect(page).to have_content "ConsultaPrevia"
+        expect(page).not_to have_content "ParticipaciónCiudadana"
+      end
+    end
   end
 end
