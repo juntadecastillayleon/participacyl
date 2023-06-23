@@ -2,9 +2,20 @@
 //
 // You can also create SCSS files in the app/assets/stylesheets/custom/
 // folder and they will be loaded automatically.
-.legislation-hero {
-  .prompt {
-    font-weight: bold;
+
+.section-prompt {
+  @include full-width-background;
+  @include grid-column-gutter;
+
+  filter: brightness(0.95);
+  margin-top: -$line-height;
+  margin-bottom: $line-height;
+  padding-bottom: $line-height;
+  padding-top: $line-height;
+
+  p {
+    font-size: rem-calc(24);
+    margin-bottom: 0;
     text-transform: uppercase;
   }
 }
