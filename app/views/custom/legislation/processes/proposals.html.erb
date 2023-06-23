@@ -1,0 +1,15 @@
+<% provide :title do %><%= @process.title %><% end %>
+
+<%= render "legislation/processes/header", process: @process, header: :full %>
+
+<%= render "documents/additional_documents", documents: @process.documents %>
+
+<% if @process.prompt.present? %>
+  <div class="section-prompt" style="<%= css_for_process_header %>">
+    <p><strong><%= @process.prompt %></strong></p>
+  </div>
+<% end %>
+
+<%= render "key_dates", process: @process, phase: :proposals %>
+
+<%= render "proposals_content", process: @process, proposals: @proposals %>

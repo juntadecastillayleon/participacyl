@@ -31,7 +31,7 @@ describe "Admin collaborative legislation", :admin do
         fill_in "End", with: base_date + 5.days
       end
 
-      within_fieldset "Debate phase" do
+      within_fieldset "Proposals phase" do
         check "Enabled"
         fill_in "Start", with: base_date
         fill_in "End", with: base_date + 2.days
@@ -62,7 +62,7 @@ describe "Admin collaborative legislation", :admin do
       expect(page).to have_content "WHAT DO YOU THINK ABOUT THIS LEGISLATION PROCESS?"
 
       within(".legislation-process-list") do
-        expect(page).to have_link text: "Debate"
+        expect(page).to have_link text: "Proposals"
         expect(page).to have_link text: "Comments"
       end
 
@@ -104,6 +104,12 @@ describe "Admin collaborative legislation", :admin do
 
       expect(page).to have_content "New title"
       expect(page).to have_content "New description"
+      expect(page).not_to have_content "NEW PROMPT?"
+
+      within(".legislation-process-list") do
+        click_link(text: "Proposals")
+      end
+
       expect(page).to have_content "NEW PROMPT?"
     end
 
