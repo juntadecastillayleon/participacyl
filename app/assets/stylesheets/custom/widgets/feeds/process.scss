@@ -37,4 +37,11 @@
       font-size: $small-font-size;
     }
   }
+
+  a {
+    &.see-all {
+      @include regular-button;
+      margin-top: $line-height / 2;
+    }
+  }
 }
