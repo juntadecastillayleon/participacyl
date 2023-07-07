@@ -6,6 +6,7 @@ class Legislation::Process < ApplicationRecord
   include Documentable
   include SDG::Relatable
   include Searchable
+  include Graphqlable
 
   acts_as_paranoid column: :hidden_at
   acts_as_taggable_on :customs
@@ -65,6 +66,7 @@ class Legislation::Process < ApplicationRecord
   scope :past, -> { where("end_date < ?", Date.current) }
 
   scope :published, -> { where(published: true) }
+  scope :public_for_api, -> { all }
 
   def self.not_in_draft
     where("draft_phase_enabled = false or (draft_start_date IS NOT NULL and
