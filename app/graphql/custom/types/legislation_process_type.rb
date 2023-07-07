@@ -14,6 +14,7 @@ module Types
     field :proposals_description, String, null: true
     field :proposals_phase_end_date, GraphQL::Types::ISO8601Date, null: true
     field :proposals_phase_start_date, GraphQL::Types::ISO8601Date, null: true
+    field :proposals, Types::LegislationProposalType.connection_type, null: true
     field :public_created_at, String, null: true
     field :start_date, GraphQL::Types::ISO8601Date, null: false
     field :summary, String, null: true

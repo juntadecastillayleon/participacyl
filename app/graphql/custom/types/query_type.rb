@@ -11,6 +11,13 @@ module Types
       argument :id, ID, required: true, default_value: false
     end
 
+    field :legislation_proposals, Types::LegislationProposalType.connection_type,
+          "Returns all legislation proposals", null: false
+    field :legislation_proposal, Types::LegislationProposalType,
+          "Returns legislation proposal for ID", null: false do
+      argument :id, ID, required: true, default_value: false
+    end
+
     def legislation_processes(tag: nil)
       processes = Legislation::Process.public_for_api
       processes = processes.joins(:tags).where(tags: { name: tag }) if tag.present?
@@ -19,6 +26,14 @@ module Types
 
     def legislation_process(id:)
       Legislation::Process.find(id)
+    end
+
+    def legislation_proposals
+      Legislation::Proposal.public_for_api
+    end
+
+    def legislation_proposal(id:)
+      Legislation::Proposal.find(id)
     end
   end
 end

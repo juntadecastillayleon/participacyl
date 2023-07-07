@@ -43,5 +43,50 @@ describe "Consul Schema", type: :graphql_api do
         expect(titles).to match_array ["Consultation process"]
       end
     end
+
+    describe "Proposal" do
+      it "returns requested information" do
+        proposal = create(:legislation_proposal, title: "Awesome proposal")
+        create(:vote, votable: proposal)
+        create(:comment, commentable: proposal)
+
+        query = "{ legislation_proposals { edges { node { id, title, comments_count, votes_count }}}}"
+        response = execute(query)
+        ids = extract_fields(response, "legislation_proposals", "id")
+        titles = extract_fields(response, "legislation_proposals", "title")
+        votes_count = extract_fields(response, "legislation_proposals", "votes_count")
+        comments_count = extract_fields(response, "legislation_proposals", "comments_count")
+
+        expect(ids).to match_array [proposal.id.to_s]
+        expect(titles).to match_array ["Awesome proposal"]
+        expect(comments_count).to match_array [1]
+        expect(votes_count).to match_array [1]
+      end
+
+      it "returns parent process" do
+        process = create(:legislation_process, title: "Awesome processs",)
+        proposal = create(:legislation_proposal, process: process)
+
+        response = execute("{ legislation_proposal(id: #{proposal.id}) { process { title }}}")
+
+        title = dig(response, "data.legislation_proposal.process.title")
+
+        expect(title).to eq "Awesome processs"
+      end
+    end
+  end
+
+  describe "Comments" do
+    it "only returns comments from proposals, debates, polls and legislation proprosals" do
+      create(:comment, commentable: create(:proposal))
+      create(:comment, commentable: create(:debate))
+      create(:comment, commentable: create(:poll))
+      create(:comment, commentable: create(:legislation_proposal))
+
+      response = execute("{ comments { edges { node { commentable_type } } } }")
+      received_commentables = extract_fields(response, "comments", "commentable_type")
+
+      expect(received_commentables).to match_array ["Proposal", "Debate", "Poll", "Legislation::Proposal"]
+    end
   end
 end
