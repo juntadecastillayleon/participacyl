@@ -105,4 +105,18 @@ describe "Consul Schema", type: :graphql_api do
       expect(received_commentables).to match_array ["Proposal", "Debate", "Poll", "Legislation::Proposal"]
     end
   end
+
+  describe "Users" do
+    let(:user) { create(:user) }
+
+    it "returns requested information" do
+      last_sign_in = DateTime.current
+      user.update!(last_sign_in_at: last_sign_in)
+
+      response = execute("{ user(id: #{user.id}) { last_sign_in_at } }")
+      last_sign_in_at = dig(response, "data.user.last_sign_in_at")
+
+      expect(last_sign_in_at).to eq I18n.l(last_sign_in, format: "%Y-%m-%dT%H:%M:%S%Z")
+    end
+  end
 end
