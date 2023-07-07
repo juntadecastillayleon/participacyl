@@ -8,6 +8,7 @@ module Types
     field :end_date, GraphQL::Types::ISO8601Date, null: false
     field :homepage, String, null: true
     field :id, ID, null: false
+    field :link, String, null: false
     field :milestones_summary, String, null: true
     field :prompt, String, null: true
     field :proposals_count, Integer, null: false
@@ -24,6 +25,10 @@ module Types
 
     def comments_count
       process.proposals.sum { |proposal| proposal.comments.count }
+    end
+
+    def link
+      legislation_process_url(process)
     end
 
     def proposals_count

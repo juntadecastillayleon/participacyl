@@ -9,6 +9,7 @@ module Types
     field :comments, Types::CommentType.connection_type, null: true
     field :description, String, null: true
     field :id, ID, null: false
+    field :link, String, null: false
     field :process, Types::LegislationProcessType, null: true
     field :public_created_at, String, null: true
     field :retired_explanation, String, null: true
@@ -20,6 +21,10 @@ module Types
 
     def votes_count
       proposal.cached_votes_total
+    end
+
+    def link
+      legislation_process_proposal_url(proposal.process, proposal)
     end
   end
 end

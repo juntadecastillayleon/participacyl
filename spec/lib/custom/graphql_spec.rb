@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "Consul Schema", type: :graphql_api do
+  include Rails.application.routes.url_helpers
+
   describe "Legislation" do
     describe "Process" do
       it "returns requested information" do
@@ -9,18 +11,29 @@ describe "Consul Schema", type: :graphql_api do
         create(:vote, votable: proposal)
         create(:comment, commentable: proposal)
 
-        response = execute("{ legislation_processes { edges { node { id, title, comments_count, proposals_count, votes_count }}}}")
+        query = "{
+            legislation_processes {
+              edges {
+                node {
+                  id, title, comments_count, proposals_count, votes_count, link
+                }
+              }
+            }
+          }"
+        response = execute(query)
         ids = extract_fields(response, "legislation_processes", "id")
         titles = extract_fields(response, "legislation_processes", "title")
         proposals_count = extract_fields(response, "legislation_processes", "proposals_count")
         votes_count = extract_fields(response, "legislation_processes", "votes_count")
         comments_count = extract_fields(response, "legislation_processes", "comments_count")
+        links = extract_fields(response, "legislation_processes", "link")
 
         expect(ids).to match_array [process.id.to_s]
         expect(titles).to match_array ["Awesome process"]
         expect(comments_count).to match_array [1]
         expect(proposals_count).to match_array [1]
         expect(votes_count).to match_array [1]
+        expect(links).to match_array [legislation_process_url(process, host: "test")]
       end
 
       it "filters by tag name when given" do
@@ -50,17 +63,20 @@ describe "Consul Schema", type: :graphql_api do
         create(:vote, votable: proposal)
         create(:comment, commentable: proposal)
 
-        query = "{ legislation_proposals { edges { node { id, title, comments_count, votes_count }}}}"
+        query = "{ legislation_proposals { edges { node { id, title, comments_count, votes_count, link }}}}"
         response = execute(query)
         ids = extract_fields(response, "legislation_proposals", "id")
         titles = extract_fields(response, "legislation_proposals", "title")
         votes_count = extract_fields(response, "legislation_proposals", "votes_count")
         comments_count = extract_fields(response, "legislation_proposals", "comments_count")
+        links = extract_fields(response, "legislation_proposals", "link")
 
         expect(ids).to match_array [proposal.id.to_s]
         expect(titles).to match_array ["Awesome proposal"]
         expect(comments_count).to match_array [1]
         expect(votes_count).to match_array [1]
+        url = legislation_process_proposal_url(proposal.process, proposal, host: "test")
+        expect(links).to match_array [url]
       end
 
       it "returns parent process" do

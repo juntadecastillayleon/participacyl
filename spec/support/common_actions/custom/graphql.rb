@@ -1,5 +1,6 @@
 module Graphql
   def execute(query_string, context = {}, variables = {})
+    context.merge!(request: ActionDispatch::TestRequest.create({ "HTTP_HOST" => "test" }))
     ConsulSchema.execute(query_string, context: context, variables: variables)
   end
 
