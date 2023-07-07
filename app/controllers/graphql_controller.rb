@@ -14,7 +14,9 @@ class GraphqlController < ApplicationController
 
       result = ConsulSchema.execute(query_string,
         variables: prepare_variables,
-        context: {},
+        context: {
+          request: request
+        },
         operation_name: params[:operationName]
       )
       render json: result
