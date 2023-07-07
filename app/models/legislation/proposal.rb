@@ -14,6 +14,7 @@ class Legislation::Proposal < ApplicationRecord
   include Imageable
   include Randomizable
   include SDG::Relatable
+  include Graphqlable
 
   accepts_nested_attributes_for :documents, allow_destroy: true
 
@@ -51,6 +52,7 @@ class Legislation::Proposal < ApplicationRecord
   scope :last_week,                -> { where("proposals.created_at >= ?", 7.days.ago) }
   scope :selected,                 -> { where(selected: true) }
   scope :winners,                  -> { selected.sort_by_confidence_score }
+  scope :public_for_api,           -> { all }
 
   def to_param
     "#{id}-#{title}".parameterize

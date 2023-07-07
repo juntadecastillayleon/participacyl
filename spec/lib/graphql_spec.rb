@@ -450,6 +450,47 @@ describe "Consul Schema" do
 
         expect(titles).to match_array ["Consultation process"]
       end
+
+      it "returns related proposals" do
+        process = create(:legislation_process)
+        create(:legislation_proposal, title: "Awesome proposal", process: process)
+
+        response = execute("{ legislation_processes { edges { node { proposals { edges { node { title }}}}}}}")
+
+        proposal = extract_fields(response, "legislation_processes", "proposals.edges").first
+        title = proposal.first.dig("node", "title")
+        expect(title).to eq "Awesome proposal"
+      end
+    end
+
+    describe "Proposal" do
+      it "returns requested information" do
+        proposal = create(:legislation_proposal, title: "Awesome proposal")
+        create(:vote, votable: proposal)
+        create(:comment, commentable: proposal)
+
+        response = execute("{ legislation_proposals { edges { node { id, title, comments_count, votes_count }}}}")
+        ids = extract_fields(response, "legislation_proposals", "id")
+        titles = extract_fields(response, "legislation_proposals", "title")
+        votes_count = extract_fields(response, "legislation_proposals", "votes_count")
+        comments_count = extract_fields(response, "legislation_proposals", "comments_count")
+
+        expect(ids).to match_array [proposal.id.to_s]
+        expect(titles).to match_array ["Awesome proposal"]
+        expect(comments_count).to match_array [1]
+        expect(votes_count).to match_array [1]
+      end
+
+      it "returns parent process" do
+        process = create(:legislation_process, title: "Awesome processs",)
+        proposal = create(:legislation_proposal, process: process)
+
+        response = execute("{ legislation_proposal(id: #{proposal.id}) { process { title }}}")
+
+        title = dig(response, "data.legislation_proposal.process.title")
+
+        expect(title).to eq "Awesome processs"
+      end
     end
   end
 
