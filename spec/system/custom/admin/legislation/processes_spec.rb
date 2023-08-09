@@ -20,7 +20,7 @@ describe "Admin collaborative legislation", :admin do
 
       base_date = Date.current
 
-      within_fieldset text: "Draft phase" do
+      within "fieldset", text: "Draft phase" do
         check "Enabled"
         fill_in "Start", with: base_date - 3.days
         fill_in "End", with: base_date - 1.day
