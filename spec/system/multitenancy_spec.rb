@@ -174,7 +174,7 @@ describe "Multitenancy", :seed_tenants do
     end
   end
 
-  scenario "Shows the not found page when accessing a non-existing tenant", :show_exceptions do
+  scenario "Shows the not found page when accessing a non-existing tenant", :show_exceptions, :consul do
     with_subdomain("jupiter") do
       visit root_path
 
