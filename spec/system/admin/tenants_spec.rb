@@ -91,7 +91,7 @@ describe "Tenants", :admin, :seed_tenants do
     expect(page).to have_link "Sign in"
   end
 
-  scenario "Hide and restore", :show_exceptions do
+  scenario "Hide and restore", :show_exceptions, :consul do
     create(:tenant, schema: "moon", name: "Moon")
 
     visit admin_tenants_path
