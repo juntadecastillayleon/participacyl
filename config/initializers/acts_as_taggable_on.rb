@@ -7,7 +7,7 @@ module ActsAsTaggableOn
       where(
         # TODO: remove default_scoped after upgrading to Rails 6.1
         tag: Tag.default_scoped.where(kind: [nil, "category"]),
-        taggable: [Debate.public_for_api, Proposal.public_for_api]
+        taggable: [Debate.public_for_api, Proposal.public_for_api, Legislation::Process.public_for_api]
       )
     end
 
