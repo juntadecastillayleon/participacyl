@@ -195,7 +195,7 @@
       <div id="category_tags" class="tags">
         <%= f.label :tag_list, t("budgets.investments.form.tag_category_label") %>
         <p class="help-text" id="tag-list-help-text"><%= t("legislation.processes.form.tags_instructions") %></p>
-        <% Legislation::Process::CATEGORIES.each do |category| %>
+        <% (Legislation::Process::CATEGORIES + ["Destacado"]).each do |category| %>
           <a href="#" class="js-add-tag-link"><%= category %></a>
         <% end %>
       </div>

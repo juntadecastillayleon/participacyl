@@ -6,6 +6,8 @@ class Legislation::Process
 
   scope :by_date_range, ->(date_range) { where(start_date: date_range).or(where(end_date: date_range)) }
   scope :public_for_api, -> { all }
+  scope :past_priority, -> { past.tagged_with("Destacado") }
+  scope :render_at_homepage, -> { open.or(past_priority) }
   attribute :background_color, default: "#f0f0f0"
 
   CATEGORIES = ["ConsultaPrevia", "ParticipaciónCiudadana"].freeze
