@@ -9,13 +9,16 @@
             <h2 class="title"><%= t("welcome.feed.most_active.#{category.underscore}") %></h2>
           </header>
 
-          <% if feed.items.tagged_with(category).any? %>
+          <% collection = category == "ConsultaPrevia" ? "consultation" : "participation" %>
+          <% if feed.send("#{collection}_open_processes").any? || feed.send("#{collection}_past_processes").any? %>
             <div class="feed-content">
-              <% feed.items.tagged_with(category).each do |item| %>
-                <div class="feed-item <%= item.status == :open ? "open" : "closed" %>">
-                  <%= link_to item.title, url_for(item) %>
-                  <span><%= t("welcome.feed.proposals", count: item.proposals.count) %></span>
-                </div>
+              <% ["#{collection}_open_processes", "#{collection}_past_processes"].each do |method| %>
+                <% feed.send(method).each do |item| %>
+                  <div class="feed-item <%= method.include?("open") ? "open" : "closed" %>">
+                    <%= link_to item.title, url_for(item) %>
+                    <span><%= t("welcome.feed.proposals", count: item.proposals.count) %></span>
+                  </div>
+                <% end %>
               <% end %>
             </div>
 
