@@ -12,7 +12,11 @@
         <tr id="comment_<%= comment.id %>">
           <td>
             <%= comment.commentable_type.constantize.model_name.human %> -
-            <%= link_to comment.commentable.title, commentable_path(comment), target: "_blank" %>
+            <% if comment.commentable.hidden? %>
+              (<%= t("admin.comments.index.hidden_#{comment.commentable_type.parameterize.underscore}") %>: <%= comment.commentable.title %>)
+            <% else %>
+              <%= link_to comment.commentable.title, commentable_path(comment), target: "_blank" %>
+            <% end %>
             <br>
             <span class="date"><%= l comment.updated_at.to_date %></span>
             <span class="bullet">&nbsp;&bull;&nbsp;</span>

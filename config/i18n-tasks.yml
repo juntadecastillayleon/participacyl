@@ -141,6 +141,7 @@ ignore_unused:
   - "attributes.*"
   - "date.order"
   - "unauthorized.*"
+  - "admin.comments.index.hidden_*"
   - "admin.officials.level_*"
   - "admin.hidden_comments.index.filter*"
   - "admin.banners.index.filters.*"
