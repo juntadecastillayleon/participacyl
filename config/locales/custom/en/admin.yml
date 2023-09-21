@@ -1,5 +1,8 @@
 en:
   admin:
+    comments:
+      index:
+        hidden_legislation_proposal: Hidden proposal
     documents:
       index:
         legislation:
