@@ -12,13 +12,18 @@
           <% collection = category == "ConsultaPrevia" ? "consultation" : "participation" %>
           <% if feed.send("#{collection}_open_processes").any? || feed.send("#{collection}_past_processes").any? %>
             <div class="feed-content">
-              <% ["#{collection}_open_processes", "#{collection}_past_processes"].each do |method| %>
-                <% feed.send(method).each do |item| %>
-                  <div class="feed-item <%= method.include?("open") ? "open" : "closed" %>">
-                    <%= link_to item.title, url_for(item) %>
-                    <span><%= t("welcome.feed.proposals", count: item.proposals.count) %></span>
-                  </div>
-                <% end %>
+              <% feed.send("#{collection}_open_processes").each do |item| %>
+                <div class="feed-item open">
+                  <%= link_to item.title, url_for(item) %>
+                  <span><%= t("welcome.feed.proposals", count: item.proposals.count) %></span>
+                </div>
+              <% end %>
+
+              <% feed.send("#{collection}_past_processes").each do |item| %>
+                <div class="feed-item closed">
+                  <%= link_to t("welcome.feed.past_title", title: item.title), url_for(item) %>
+                  <span><%= t("welcome.feed.proposals", count: item.proposals.count) %></span>
+                </div>
               <% end %>
             </div>
 

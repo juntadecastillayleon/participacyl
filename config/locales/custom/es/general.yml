@@ -4,6 +4,7 @@ es:
       most_active:
         consulta_previa: Consultas previas
         participación_ciudadana: Procesos de participación ciudadana
+      past_title: "%{title} (Cerrado)"
       proposals:
         one: 1 propuesta
         other: "%{count} propuestas"
