@@ -4,7 +4,7 @@
       <% Legislation::Process::CATEGORIES.each do |category| %>
         <% kind = feed.kind %>
 
-        <section id="feed_<%= kind %>" class="widget-feed feed-<%= kind %>">
+        <section id="feed_<%= "#{kind}_#{category}".underscore %>" class="widget-feed feed-<%= kind %>">
           <header>
             <h2 class="title"><%= t("welcome.feed.most_active.#{category.underscore}") %></h2>
           </header>
