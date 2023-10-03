@@ -20,14 +20,14 @@ describe "Home" do
                                      end_date: 1.month.from_now)
       end
 
-      visit root_path
+      visit root_path(locale: :es)
 
-      within ".feed-processes", text: "Consulta Previa" do
+      within ".feed-processes", text: "Consultas previas" do
         expect(page).to have_css(".open", count: 3)
         expect("One week process").to appear_before("Two weeks process")
         expect("Two weeks process").to appear_before("One month process")
       end
-      within ".feed-processes", text: "Participación Ciudadana" do
+      within ".feed-processes", text: "Procesos de participación ciudadana" do
         expect(page).to have_css(".open", count: 3)
         expect("One week process").to appear_before("Two weeks process")
         expect("Two weeks process").to appear_before("One month process")
@@ -55,14 +55,14 @@ describe "Home" do
                                      end_date: 1.week.ago)
       end
 
-      visit root_path
+      visit root_path(locale: :es)
 
-      within ".feed-processes", text: "Consulta Previa" do
+      within ".feed-processes", text: "Consultas previas" do
         expect("One week process").to appear_before("Two weeks process")
         expect("Two weeks process").to appear_before("Recently closed project")
         expect("Recently closed project").to appear_before("Older closed project")
       end
-      within ".feed-processes", text: "Participación Ciudadana" do
+      within ".feed-processes", text: "Procesos de participación ciudadana" do
         expect("One week process").to appear_before("Two weeks process")
         expect("Two weeks process").to appear_before("Recently closed project")
         expect("Recently closed project").to appear_before("Older closed project")
