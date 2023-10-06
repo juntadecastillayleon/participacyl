@@ -16,14 +16,6 @@
   .feed-item {
     margin-top: $line-height;
 
-    &.open {
-      @include has-fa-icon(unlock-alt, solid);
-
-      &::before {
-        color: $color-success;
-      }
-    }
-
     &.closed {
       @include has-fa-icon(lock, solid);
 

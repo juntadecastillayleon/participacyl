@@ -63,6 +63,22 @@ footer {
       }
     }
   }
+
+  .top-bar-logo {
+    flex-grow: 1;
+    line-height: $line-height;
+    margin-bottom: 0;
+
+    a img {
+      height: rem-calc(48);
+      margin: 0;
+      width: auto;
+
+      @include breakpoint(medium up) {
+        height: auto;
+      }
+    }
+  }
 }
 
 .auth-form .org-name {
